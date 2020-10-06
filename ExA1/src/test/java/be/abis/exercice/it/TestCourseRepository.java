@@ -26,7 +26,7 @@ public class TestCourseRepository {
 	@Test
 	public void courseWithId8050isMaven() {
 		String title = cr.findCourse(8050).getShortTitle();
-		assertEquals("Maven",title);
+		assertEquals("Workshop SQL",title);
 	}
 	
 	
