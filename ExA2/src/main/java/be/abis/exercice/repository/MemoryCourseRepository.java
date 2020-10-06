@@ -3,8 +3,11 @@ package be.abis.exercice.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import be.abis.exercice.model.Course;
 
+@Repository
 public class MemoryCourseRepository implements CourseRepository {
 	
 	private ArrayList<Course> courses = new ArrayList<Course>();

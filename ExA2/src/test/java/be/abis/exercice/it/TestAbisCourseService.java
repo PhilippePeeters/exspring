@@ -21,11 +21,7 @@ public class TestAbisCourseService {
 	@Autowired
 	CourseService courseService;
 	
-	@Before
-	public void setUp() {
-		courseService = new AbisCourseService();
-	}
-	
+
 	@Test
 	public void testFindCourseTitleWithCourseId7900() {
 		//Arrange
@@ -41,7 +37,7 @@ public class TestAbisCourseService {
 		//Arrange
 		double expected = 400.0;
 		//Act
-		double priceCourse = courseService.findCourse(7900).getPricePerDay() * courseService.findCourse(7900).getNumberOfDays();
+		double priceCourse = courseService.findCourse(7900).getPricePerDay();
 		
 		//Assert
 		assertThat(priceCourse, greaterThan(expected));
