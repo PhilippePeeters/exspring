@@ -4,28 +4,32 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import be.abis.exercice.repository.CourseRepository;
 import be.abis.exercice.repository.MemoryCourseRepository;
+import be.abis.exercice.service.CourseService;
 
 public class TestCourseRepository {
 	
-	CourseRepository cr;
+	@Autowired
+	CourseRepository courseRepository;
 	
-	@Before
-	public void setUp() {
-		cr = new MemoryCourseRepository();
-	}
-	
+//	CourseRepository cr;
+//	
+//	@Before
+//	public void setUp() {
+//		cr = new MemoryCourseRepository();
+//	}
 	@Test
 	public void numberOfCoursesInMemoryIs5() {
-		int size = cr.findAllCourses().size();
+		int size = courseRepository.findAllCourses().size();
 		assertEquals(5,size);
 	}
 	
 	@Test
 	public void courseWithId8050isMaven() {
-		String title = cr.findCourse(8050).getShortTitle();
+		String title = courseRepository.findCourse(8050).getShortTitle();
 		assertEquals("Maven",title);
 	}
 	
