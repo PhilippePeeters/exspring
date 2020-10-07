@@ -1,10 +1,8 @@
 package be.abis.exercice.controller;
 
 import java.util.List;
-import java.util.function.IntPredicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.InternalParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +24,7 @@ public class AbisCourseController {
 	CourseService courseService;
 
 	Person person;
+	Course courseFind;
 	
 	@GetMapping("/")
 	public String showLogin(Model model) {
@@ -59,8 +58,9 @@ public class AbisCourseController {
 	
 	@GetMapping("/course")
 	public String showCoursePage(Model model) {
-		Course course = trainingService.findCourse(7900);
-		model.addAttribute("course", course);
+//		course = new Course();
+//		course = trainingService.findCourse(7900);
+//		model.addAttribute("course", course);
 		return "courseoptions";
 	
 	}
@@ -90,11 +90,11 @@ public class AbisCourseController {
 		System.out.println("Short Title : " + course.getShortTitle());
 		// Try to find the course in the file
 		
-		course = courseService.findCourse(course.getShortTitle());
-//		course = trainingService.findCourse(Integer.parseInt(course.getCourseId()));
+		courseFind = courseService.findCourse(course.getShortTitle());
 		
 		//Redirect to the next Page or login if person is null
-		if (course == null) {
+		model.addAttribute("course",courseFind);
+		if (courseFind == null) {
 			return "redirect:/course";
 		} else {
 			return "redirect:/coursedetails";
@@ -114,12 +114,12 @@ public class AbisCourseController {
 		System.out.println("Id Course : " + course.getCourseId());
 		// Try to find the course in the file
 		
-		course = courseService.findCourse(Integer.parseInt(course.getCourseId()));
-//		course = trainingService.findCourse(Integer.parseInt(course.getCourseId()));
+		courseFind = courseService.findCourse(Integer.parseInt(course.getCourseId()));
 		
 		//Redirect to the next Page or login if person is null
-		model.addAttribute("course",course);
-		if (course == null) {
+		
+		model.addAttribute("course",courseFind);
+		if (courseFind == null) {
 			return "redirect:/course";
 		} else {
 			return "redirect:/coursedetails";
@@ -127,9 +127,9 @@ public class AbisCourseController {
 		
 	}
 	@GetMapping("/coursedetails")
-	public String showDetailsCoursePage(Model model, Course course) {
-		System.out.println("Id Course : " + course.getCourseId());
-		model.addAttribute("course",course);
+	public String showDetailsCoursePage(Model model) {
+		System.out.println("Id Course : " + courseFind.getCourseId());
+		model.addAttribute("course",courseFind);
 		return "coursedetails";
 	}
 	
