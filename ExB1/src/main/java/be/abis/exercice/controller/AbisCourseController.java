@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import be.abis.exercice.model.Course;
 import be.abis.exercice.model.LoginItem;
 import be.abis.exercice.model.Person;
 import be.abis.exercice.service.TrainingService;
@@ -16,12 +17,13 @@ public class AbisCourseController {
 	@Autowired
 	TrainingService trainingService; 
 
-	LoginItem loginItem = new LoginItem();	
+	
 	Person person;
 	
 	
 	@GetMapping("/")
 	public String showLogin(Model model) {
+		LoginItem loginItem = new LoginItem();
 		model.addAttribute("loginItem", loginItem);
 		return "loginItemForm";
 	}
@@ -56,6 +58,8 @@ public class AbisCourseController {
 	
 	@GetMapping("/course")
 	public String showCoursePage(Model model) {
+		Course course = trainingService.findCourse(7900);
+		model.addAttribute("course", course);
 		return "course";
 	
 	}
