@@ -48,10 +48,10 @@ public class AbisCourseController {
 		return "welcome";
 	}
 	
-	@PostMapping("/welcome")
-	public String linkCourse(Model model) {
-		return "redirect:/course";
-	}
+//	@PostMapping("/welcome")
+//	public String linkCourse(Model model) {
+//		return "redirect:/course";
+//	}
 	
 	
 	@GetMapping("/course")
@@ -62,7 +62,7 @@ public class AbisCourseController {
 	
 	@GetMapping("/adminperson")
 	public String showAdminPersonPage(Model model) {
-		return "adminPerson";
+		return "adminperson";
 	
 	}
 
