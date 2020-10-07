@@ -17,9 +17,7 @@ public class AbisCourseController {
 	@Autowired
 	TrainingService trainingService; 
 
-	
 	Person person;
-	
 	
 	@GetMapping("/")
 	public String showLogin(Model model) {
@@ -50,11 +48,6 @@ public class AbisCourseController {
 		return "welcome";
 	}
 	
-//	@PostMapping("/welcome")
-//	public String linkCourse(Model model) {
-//		return "redirect:/course";
-//	}
-	
 	
 	@GetMapping("/course")
 	public String showCoursePage(Model model) {
@@ -70,4 +63,9 @@ public class AbisCourseController {
 	
 	}
 
+	@GetMapping("/logout")
+	public String logoutAction() {
+		return "redirect:/";
+	
+	}
 }
