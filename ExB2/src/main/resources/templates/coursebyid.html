@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Find Course By Id </h1>
+
+    <form action="#" method="post" th:action="@{/coursebyid}" th:object="${course}">
+    	    <hr/>
+            <label for = "idcourse" >Id Course</label>
+            <input th:field="*{courseId}"  type = "text" name="courseid" id="courseid"  placeholder="1">
+            <br/>
+            <button type = "submit" >Search</button>
+    </form>
+
+
+	<form action="#" method="get" th:action="@{/course}">
+          <button type = "submit" >Back</button>
+    </form>		
+</body>
+</html>
