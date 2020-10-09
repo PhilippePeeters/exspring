@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import be.abis.exercice.model.Address;
+import be.abis.exercice.model.Company;
 import be.abis.exercice.model.Course;
 import be.abis.exercice.model.LoginItem;
 import be.abis.exercice.model.Person;
@@ -27,6 +29,7 @@ public class AbisCourseController {
 	Person personFind;
 	Course courseFind;
 	String newPassword;
+	String message;
 
 // Login part
 	@GetMapping("/")
@@ -150,8 +153,11 @@ public class AbisCourseController {
 		// Try to find the course in the file
 		trainingService.changePassword(personFind, newPassword);
 		
+		message = "New Password updated correctly !!";
 		//Redirect to the next Page or login if person is null
-		return "redirect:/adminperson";
+		model.addAttribute("message",message);
+
+		return "redirect:/confirm";
 	}
 
 	@GetMapping("/findperson")
@@ -166,6 +172,98 @@ public class AbisCourseController {
 		return "allpersons";
 	}
 
+	@GetMapping("/personbyid")
+	public String findPersonByIdPage(Model model) {
+		Person person = new Person();
+		model.addAttribute("person", person);
+		return "personbyid";
+	}
+	
+	@PostMapping("/personbyid")
+	public String showPersonByIdPage(Model model, Person person) {
+		System.out.println("Info Person : " + person.getPersonId());
+		// Try to find the course in the file
+		
+		personFind = trainingService.findPerson(person.getPersonId());
+		
+		//Redirect to the next Page or login if person is null
+		
+		model.addAttribute("person",personFind);
+		if (personFind == null) {
+			return "redirect:/findperson";
+		} else {
+			return "redirect:/persondetails";
+		}
+		
+	}
+		
+	@GetMapping("/persondetails")
+	public String showDetailsPersonPage(Model model) {
+		System.out.println("Id Person : " + personFind.getPersonId());
+		model.addAttribute("person",personFind);
+		return "persondetails";
+	}
+	
+	@GetMapping("/removepersonbyid")
+	public String findPersonByIdToRemovePage(Model model) {
+		Person person = new Person();
+		model.addAttribute("person", person);
+		return "removepersonbyid";
+	}
+	
+	@PostMapping("/removepersonbyid")
+	public String showPersonByIdToRemovePage(Model model, Person person) {
+		System.out.println("Info Person : " + person.getPersonId());
+		// Try to find the course in the file
+		
+		message = "Person Removed !!!" +  " Id : " + person.getPersonId();
+		trainingService.deletePerson(person.getPersonId());
+		
+		//Redirect to the next Page or login if person is null
+		//Prepare confirm message
+		model.addAttribute("message",message);
+		return "redirect:/confirm";
+	}
+	
+	@GetMapping("/addperson")
+	public String addNewPersonPage(Model model) {
+		Person person = new Person();
+		Company company = new Company();
+		Address address = new Address();
+				
+		model.addAttribute("person", person);
+		model.addAttribute("company", company);
+		model.addAttribute("address", address);
+		return "addperson";
+	}
+	
+	@PostMapping("/addperson")
+	public String addNewPersonPage(Model model, Person person, Company company, Address address) {
+		
+		// Build links
+		company.setAddress(address);
+		person.setCompany(company);
+
+		System.out.println("Info Person  : " + person.toString());
+		System.out.println("Info Company : " + company.toString());
+		System.out.println("Info Address : " + address.toString());
+
+		//Add the person in the file
+		trainingService.addPerson(person);
+		
+		//Prepare confirm message
+		message = "New Person Added !!!" + person.getFirstName() + " Id : " + person.getPersonId();
+		
+		//Redirect to the next Page or login if person is null
+		model.addAttribute("message",message);
+		return "redirect:/confirm";
+	}
+	
+	@GetMapping("/confirm")
+	public String showMessageAfterOperationPage(Model model) {
+		model.addAttribute("message",message);
+		return "confirm";
+	}
 	
 //Logout part	
 	@GetMapping("/logout")

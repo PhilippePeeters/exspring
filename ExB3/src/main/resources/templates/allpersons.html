@@ -20,7 +20,7 @@
 				<th>Company</th>
 			</tr>
 			<tbody>
-				<tr th:each="person : ${allPersons}">
+				<tr th:each="person : ${persons}">
 					<td th:text="${person.personId}"></td>
 					<td th:text="${person.firstName}"></td>
 					<td th:text="${person.lastName}"></td>
@@ -30,7 +30,6 @@
 					<td th:text="${person.language}"></td>
 				</tr>
 			</tbody>
-			</tr>
 			
 		</table>
 	
