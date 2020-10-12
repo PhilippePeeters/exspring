@@ -18,23 +18,32 @@
     <label for = "firstName" >First Name</label>
     <input th:field="*{firstName}"  type = "text" name="firstName" id="firstName"  placeholder="firstName">
     <div>
-		<span style="color:red" th:errors="*{person.firstName}"> </span>      
+		<span style="color:red" th:errors="*{firstName}"> </span>      
 	</div>  
     <br/>
     <label for = "lastName" >Last Name</label>
     <input th:field="*{lastName}"  type = "text" name="lastName" id="lastName"  placeholder="lastName">
     <div>
-		<span style="color:red" th:errors="*{person.lastName}"> </span>      
+		<span style="color:red" th:errors="*{lastName}"> </span>      
 	</div>  
     <br/>
     <label for = "age" >Age</label>
     <input th:field="*{age}"  type = "text" name="age" id="age"  placeholder="age">
+    <div>
+		<span style="color:red" th:errors="*{age}"> </span>      
+	</div>  
     <br/>
     <label for = "emailAddress" >Email</label>
     <input th:field="*{emailAddress}"  type = "text" name="emailAddress" id="emailAddress"  placeholder="emailAddress">
+    <div>
+		<span style="color:red" th:errors="*{emailAddress}"> </span>      
+	</div>  
     <br/>
     <label for = "password" >Password</label>
     <input th:field="*{password}"  type = "text" name="password" id="password"  placeholder="password">
+    <div>
+		<span style="color:red" th:errors="*{password}"> </span>      
+	</div>  
     <br/>
     <label for = "language" >Language</label>
 
@@ -48,6 +57,9 @@
  	<hr/>
  	<label for = "name" >Name</label>
     <input th:field="*{company.name}"  type = "text" name="companyName" id="companyName"  placeholder="companyName">
+    <div>
+		<span style="color:red" th:errors="*{company.name}"> </span>      
+	</div>  
     <br/>
     <label for = "TelephoneNumber" >Telephone Number</label>
     <input th:field="*{company.telephoneNumber}"  type = "text" name="telephoneNumber" id="telephoneNumber"  placeholder="telephoneNumber">
@@ -64,6 +76,9 @@
  	<label for = "town" >town</label>
     <input th:field="*{company.address.town}"  type = "text" name="town" id="town"  placeholder="town">
     <br/>
+    <div>
+		<span style="color:red" th:errors="*{company.address.town}"> </span>      
+	</div>  
  	<label for = "zipcode" >zipcode</label>
     <input th:field="*{company.address.zipcode}"  type = "text" name="zipcode" id="zipcode"  placeholder="zipcode">
     <br/>
@@ -77,5 +92,7 @@
     <form action="#" method="get" th:action="@{/adminperson}">
           <button type = "submit" >Back</button>
     </form>	
+    
+ 
 </body>
 </html>

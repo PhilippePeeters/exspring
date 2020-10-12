@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import be.abis.exercice.model.Address;
@@ -231,25 +232,16 @@ public class AbisCourseController {
 	@GetMapping("/addperson")
 	public String addNewPersonPage(Model model) {
 		Person person = new Person();
-//		Company company = new Company();
-//		Address address = new Address();
-				
 		model.addAttribute("person", person);
-//		model.addAttribute("company", company);
-//		model.addAttribute("address", address);
 		return "addperson";
 	}
 	
 	@PostMapping("/addperson")
-	public String addNewPersonPage( Model model ,@Valid Person person, BindingResult bindingResult) {
+	public String addNewPersonPage(Model model ,@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
             return "/addperson";
         }
-
-		// Build links
-//		company.setAddress(address);
-//		person.setCompany(company);
 
 		System.out.println("Info Person  : " + person.toString());
 		System.out.println("Info Company : " + person.getCompany().toString());

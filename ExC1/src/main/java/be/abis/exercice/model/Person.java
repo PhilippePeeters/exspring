@@ -1,7 +1,11 @@
 package be.abis.exercice.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 public class Person {
@@ -13,15 +17,22 @@ public class Person {
 	
 	@NotBlank( message="Please enter the Last Name")
 	private String lastName;
+
+	@Min(value = 18, message = "Age should not be less than 18")
+    @Max(value = 150, message = "Age should not be greater than 150")
+	@Positive(message = "Age must be positive")
 	private int age;
 	
-	@Email( message="Please enter a correct Email")
+	@NotBlank( message="Please enter the Email")
+	@Email(message = "Email should be valid")
 	private String emailAddress;
 
-	@NotBlank( message="Please enter the Last Name")
+	@NotBlank( message="Please enter the Password")
 	@Size(min=6,  message="Password should be minimum 6 characters")
 	private String password;
 	private String language;
+	
+	@Valid
 	private Company company;
 	
 	
