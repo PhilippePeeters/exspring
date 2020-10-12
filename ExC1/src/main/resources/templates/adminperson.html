@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to the Admin Person</title>
+</head>
+<body>
+	<h1> Welcome to the Admin Person</h1>
+	<hr/>
+	<div>
+		More options ...
+		<ul>
+			<li><a href="http://localhost:8085/exercice/newpassword">Change My Password</a></li>
+			<li><a href="http://localhost:8085/exercice/findperson">Search for persons (find all persons or find by id)</a></li>
+			<li><a href="http://localhost:8085/exercice/addperson">Add a new person</a></li>
+			<li><a href="http://localhost:8085/exercice/removepersonbyid">Remove a person by id</a></li>
+		</ul>
+	</div>
+	
+	<form action="#" method="get" th:action="@{/welcome}">
+          <button type = "submit" >Back</button>
+    </form>
+	
+</body>
+</html>

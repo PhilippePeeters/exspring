@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show All Person</title>
+</head>
+<body>
+	<h1>Show All Person</h1>
+ 	<hr/>
+ 			<table>
+			<tr>
+				<th>ID</th>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>Age</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>Language</th>
+				<th>Company</th>
+			</tr>
+			<tbody>
+				<tr th:each="person : ${persons}">
+					<td th:text="${person.personId}"></td>
+					<td th:text="${person.firstName}"></td>
+					<td th:text="${person.lastName}"></td>
+					<td th:text="${person.age}"></td>
+					<td th:text="${person.emailAddress}"></td>
+					<td th:text="${person.password}"></td>
+					<td th:text="${person.language}"></td>
+				</tr>
+			</tbody>
+			
+		</table>
+	
+	<form action="#" method="get" th:action="@{/findperson}">
+          <button type = "submit" >Back</button>
+    </form>	
+</body>
+</html>

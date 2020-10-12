@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Course Detail</title>
+</head>
+<body>
+	<h1>Course Detail : <span th:text="${course.longTitle}"></span></h1>
+    <hr/>
+    <label for = "courseId" >Email Address</label>
+    <input th:field="*{course.courseId}"  type = "text" name="courseId" id="courseId"  placeholder="courseId">
+    <br/>
+    <label for = "shortTitle" >Short Title</label>
+    <input th:field="*{course.shortTitle}"  type = "text" name="shortTitle" id="shortTitle"  placeholder="shortTitle">
+    <br/>
+    <label for = "longTitle" >Long Title</label>
+    <input th:field="*{course.longTitle}"  type = "text" name="longTitle" id="longTitle"  placeholder="longTitle">
+    <br/>
+    <label for = "numberOfDays" >Number of Days</label>
+    <input th:field="*{course.numberOfDays}"  type = "text" name="numberOfDays" id="numberOfDays"  placeholder="numberOfDays">
+    <br/>
+    <label for = "pricePerDay" >Price per Day</label>
+    <input th:field="*{course.pricePerDay}"  type = "text" name="pricePerDay" id="pricePerDay"  placeholder="pricePerDay">
+
+	<form action="#" method="get" th:action="@{/course}">
+          <button type = "submit" >Back</button>
+    </form>		
+
+</body>
+</html>

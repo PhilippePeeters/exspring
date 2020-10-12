@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>All Courses</h1>
+	<hr/>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Nb days</th>
+				<th>Price/day</th>
+			</tr>
+			<tbody>
+				<tr th:each="course : ${courses}">
+					<td th:text="${course.courseId}"></td>
+					<td th:text="${course.shortTitle}"></td>
+					<td th:text="${course.numberOfDays}"></td>
+					<td th:text="${course.pricePerDay}"></td>
+				</tr>
+			</tbody>
+			</tr>
+			
+		</table>
+	
+	<form action="#" method="get" th:action="@{/course}">
+          <button type = "submit" >Back</button>
+    </form>	
+</body>
+</html>
