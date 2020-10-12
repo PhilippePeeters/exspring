@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Remove Person By Id</title>
+</head>
+<body>
+	<h1>Remove Person By Id </h1>
+ 	<hr/>
+ 	
+ 	<form action="#" method="post" th:action="@{/removepersonbyid}" th:object="${person}">
+    	   
+            <label for = "idperson" >Id Person</label>
+            <input th:field="*{personId}"  type = "text" name="personId" id="personId"  placeholder="1">
+            <br/>
+            <button type = "submit" >Delete</button>
+    </form>
+
+
+	<form action="#" method="get" th:action="@{/findperson}">
+          <button type = "submit" >Back</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Course Options</title>
+</head>
+<body>
+	<h1>Course Options</h1>
+	<hr/>
+		<div>
+		More options ...
+		<ul>
+			<li><a href="http://localhost:8085/exercice/allcourses">Show all courses</a></li>
+			<li><a href="http://localhost:8085/exercice/coursebyid">Find a course by id</a></li>
+			<li><a href="http://localhost:8085/exercice/coursebyshorttitle">Find a course by short title</a></li>
+		</ul>
+	</div>
+	
+	<form action="#" method="get" th:action="@{/welcome}">
+          <button type = "submit" >Back</button>
+    </form>
+</body>
+</html>
