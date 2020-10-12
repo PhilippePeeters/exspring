@@ -243,7 +243,11 @@ public class AbisCourseController {
 	@PostMapping("/addperson")
 	public String addNewPersonPage( Model model ,@Valid Person person, @Valid Company company, @Valid Address address, 
 			BindingResult bindingResult) {
-		
+
+		if (bindingResult.hasErrors()) {
+            return "/addperson";
+        }
+
 		// Build links
 		company.setAddress(address);
 		person.setCompany(company);
@@ -251,10 +255,6 @@ public class AbisCourseController {
 		System.out.println("Info Person  : " + person.toString());
 		System.out.println("Info Company : " + company.toString());
 		System.out.println("Info Address : " + address.toString());
-
-		if (bindingResult.hasErrors()) {
-            return "redirect:/addperson";
-        }
 		
 		//Add the person in the file
 		trainingService.addPerson(person);
