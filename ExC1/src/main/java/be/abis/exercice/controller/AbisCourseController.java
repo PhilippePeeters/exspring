@@ -231,30 +231,29 @@ public class AbisCourseController {
 	@GetMapping("/addperson")
 	public String addNewPersonPage(Model model) {
 		Person person = new Person();
-		Company company = new Company();
-		Address address = new Address();
+//		Company company = new Company();
+//		Address address = new Address();
 				
 		model.addAttribute("person", person);
-		model.addAttribute("company", company);
-		model.addAttribute("address", address);
+//		model.addAttribute("company", company);
+//		model.addAttribute("address", address);
 		return "addperson";
 	}
 	
 	@PostMapping("/addperson")
-	public String addNewPersonPage( Model model ,@Valid Person person, @Valid Company company, @Valid Address address, 
-			BindingResult bindingResult) {
+	public String addNewPersonPage( Model model ,@Valid Person person, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
             return "/addperson";
         }
 
 		// Build links
-		company.setAddress(address);
-		person.setCompany(company);
+//		company.setAddress(address);
+//		person.setCompany(company);
 
 		System.out.println("Info Person  : " + person.toString());
-		System.out.println("Info Company : " + company.toString());
-		System.out.println("Info Address : " + address.toString());
+		System.out.println("Info Company : " + person.getCompany().toString());
+		System.out.println("Info Address : " + person.getCompany().getAddress().toString());
 		
 		//Add the person in the file
 		trainingService.addPerson(person);

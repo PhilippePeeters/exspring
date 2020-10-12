@@ -1,5 +1,6 @@
 package be.abis.exercice.model;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -13,6 +14,8 @@ public class Person {
 	@NotBlank( message="Please enter the Last Name")
 	private String lastName;
 	private int age;
+	
+	@Email( message="Please enter a correct Email")
 	private String emailAddress;
 
 	@NotBlank( message="Please enter the Last Name")
