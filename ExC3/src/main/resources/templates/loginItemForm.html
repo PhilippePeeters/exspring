@@ -9,8 +9,9 @@
 <body>
 	<h1>Login Page</h1>
 	<hr/>
-    <form action="#" method="post" th:action="@{/}" th:object="${loginItem}">
-		   <div>
+
+  	<form action="#" method="post" th:action="@{/}" th:object="${loginItem}">
+  	 		<div>
 				<span style="color:red" th:errors="*{global}"> </span>      
   			</div>
             <br/>

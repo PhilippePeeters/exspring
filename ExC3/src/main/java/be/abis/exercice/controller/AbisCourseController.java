@@ -51,9 +51,10 @@ public class AbisCourseController {
         }
 		
 		if (checkLoginItemCorrect(loginItem)) {
-			bindingResult.reject("Email and Password not correct for logging");
+			bindingResult.reject("email","Email and Password not correct for logging");
             return "loginItemForm";
 		}
+		model.addAttribute("person", personFind);
 		return "redirect:/welcome";
 	}
 	
@@ -274,7 +275,7 @@ public class AbisCourseController {
 		System.out.println("Email : " + loginItem.getEmail());
 		System.out.println("Password : " + loginItem.getPassword());
 		// Try to find the person in the file
-		Person personFind = trainingService.findPerson(loginItem.getEmail(), loginItem.getPassword());
+		personFind = trainingService.findPerson(loginItem.getEmail(), loginItem.getPassword());
 		
 		if (personFind == null) {
 			return true;
