@@ -50,18 +50,11 @@ public class AbisCourseController {
             return "loginItemForm";
         }
 		
-		System.out.println("Email : " + loginItem.getEmail());
-		System.out.println("Password : " + loginItem.getPassword());
-		// Try to find the person in the file
-		personFind = trainingService.findPerson(loginItem.getEmail(), loginItem.getPassword());
-		
-		//Redirect to the next Page or login if person is null
-		if (personFind == null) {
-			return "redirect:/";
-		} else {
-			return "redirect:/welcome";
+		if (checkLoginItemCorrect(loginItem)) {
+			bindingResult.reject("Email and Password not correct for logging");
+            return "loginItemForm";
 		}
-		
+		return "redirect:/welcome";
 	}
 	
 	@GetMapping("/welcome")
@@ -69,6 +62,7 @@ public class AbisCourseController {
 		model.addAttribute("person",personFind);
 		return "welcome";
 	}
+	
 	
 // Courses part	
 	@GetMapping("/course")
@@ -275,4 +269,17 @@ public class AbisCourseController {
 		return "redirect:/";
 	
 	}
+	
+	private boolean checkLoginItemCorrect(LoginItem loginItem) {
+		System.out.println("Email : " + loginItem.getEmail());
+		System.out.println("Password : " + loginItem.getPassword());
+		// Try to find the person in the file
+		Person personFind = trainingService.findPerson(loginItem.getEmail(), loginItem.getPassword());
+		
+		if (personFind == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
 }
